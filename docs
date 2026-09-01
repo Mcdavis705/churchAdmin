@@ -1,0 +1,354 @@
+# PIWC Church ERP
+
+A modern Church Management System built for **The Church of Pentecost - PIWC Barcelona**.
+
+The application is designed to centralize church administration, membership management, attendance, visitors, events, follow-ups, and reporting in a secure and scalable web application.
+
+---
+
+# Project Status
+
+🚧 Currently under active development.
+
+This project is being rebuilt from scratch using a modern full-stack architecture.
+
+---
+
+# Technology Stack
+
+## Frontend
+
+- React
+- Vite
+- React Router
+- Tailwind CSS
+- DaisyUI
+- Axios
+
+---
+
+## Backend
+
+- Node.js
+- Express.js
+- Prisma ORM
+
+---
+
+## Database
+
+- PostgreSQL
+- Supabase
+
+---
+
+## Authentication
+
+- JWT Authentication
+- Password hashing (Argon2/Bcrypt)
+- Backend-managed authentication
+
+---
+
+# Project Structure
+
+```text
+piwc-church-erp/
+
+├── frontend/
+│
+├── backend/
+│
+├── docs/
+│
+├── README.md
+│
+└── .gitignore
+```
+
+---
+
+# System Architecture
+
+```text
+                React + Vite
+                     │
+                     │
+                 REST API
+                     │
+                     ▼
+             Express.js Backend
+                     │
+               Business Logic
+                     │
+                   Prisma
+                     │
+                     ▼
+          PostgreSQL (Supabase)
+```
+
+---
+
+# Application Modules
+
+## Dashboard
+
+- Church statistics
+- Attendance overview
+- Recent visitors
+- Upcoming services
+- Birthdays
+- Pending follow-ups
+
+---
+
+## Authentication
+
+- Register
+- Login
+- Logout
+- Session management
+
+---
+
+## Members
+
+- Register members
+- Edit member information
+- Delete members
+- Department assignment
+- Membership status
+
+---
+
+## Departments
+
+- Create departments
+- Edit departments
+- Delete departments
+- Department member listing
+
+---
+
+## Services
+
+- Create church services
+- Edit services
+- Delete services
+- Open attendance register
+
+---
+
+## Mark Register
+
+Attendance is recorded from the Services module.
+
+Workflow:
+
+```text
+Services
+
+↓
+
+Create Service
+
+↓
+
+Mark Register
+
+↓
+
+Member List
+
+↓
+
+Present / Absent / Excused
+
+↓
+
+Save Attendance
+```
+
+Each member can only have one attendance record per service.
+
+---
+
+## Attendance
+
+Provides historical attendance information including:
+
+- Present
+- Absent
+- Excused
+- Unmarked
+
+Future versions will include attendance analytics.
+
+---
+
+## Visitors
+
+- Register visitors
+- Edit visitor information
+- Link visitor to service
+- Assign follow-up owner
+
+---
+
+## Follow-ups
+
+- Create follow-up tasks
+- Assign owners
+- Track completion status
+
+---
+
+## Events
+
+- Church events
+- Event management
+- Event scheduling
+
+---
+
+# Database Design
+
+Main entities:
+
+- Users
+- Members
+- Departments
+- Services
+- Attendance
+- Visitors
+- Follow-ups
+- Events
+
+Important relationship:
+
+```text
+Department
+      │
+      └────── Members
+
+Service
+      │
+      └────── Attendance
+
+Member
+      │
+      └────── Attendance
+
+Visitor
+      │
+      └────── Follow-ups
+```
+
+Attendance has a unique constraint:
+
+```text
+(serviceId, memberId)
+```
+
+which prevents duplicate attendance records.
+
+---
+
+# API Architecture
+
+The frontend never communicates directly with the database.
+
+```text
+React
+
+↓
+
+Axios
+
+↓
+
+Express API
+
+↓
+
+Prisma
+
+↓
+
+PostgreSQL
+```
+
+---
+
+# Hosting
+
+## Frontend
+
+- Netlify
+
+## Backend
+
+- Express.js hosted separately
+- (Railway / Render / VPS)
+
+## Database
+
+- Supabase PostgreSQL
+
+---
+
+# Security
+
+- Database credentials never exposed to the frontend
+- JWT authentication
+- Password hashing
+- Backend validation
+- HTTPS
+- Environment variables
+
+---
+
+# Future Features
+
+- Role-based access
+- Giving & Finance
+- Notifications
+- Reports
+- Audit Logs
+- Mobile App / PWA
+- Multi-branch support
+- Advanced attendance analytics
+
+---
+
+# Development Roadmap
+
+- Authentication
+- Members
+- Departments
+- Services
+- Attendance
+- Visitors
+- Follow-ups
+- Events
+- Dashboard
+- Reporting
+- Production deployment
+
+---
+
+# License
+
+This project is currently private and developed for:
+
+**The Church of Pentecost – PIWC Barcelona**
+
+---
+
+# Author
+
+**McDavis Albertio**
+
+Business Development Manager | Full Stack Developer
+
+Built with ❤️ using React, Express, Prisma and PostgreSQL.
